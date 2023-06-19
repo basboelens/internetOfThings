@@ -1,0 +1,11 @@
+/data/internetOfThings/lib/python3.10/site-packages/flask_restx/templates/swagger-ui.html:    <link rel="icon" type="image/png" href="{{ swagger_static('favicon-32x32.png') }}" sizes="32x32" />
+/data/internetOfThings/lib/python3.10/site-packages/flask_restx/templates/swagger-ui.html:    <link rel="icon" type="image/png" href="{{ swagger_static('favicon-16x16.png') }}" sizes="16x16" />
+/data/internetOfThings/lib/python3.10/site-packages/flask_restx-0.5.1.dist-info/RECORD:flask_restx/static/favicon-16x16.png,sha256=ryStYE3Xs7zaj5dauXMHX0ovcKQIeUShL474tjo-B8I,665
+/data/internetOfThings/lib/python3.10/site-packages/flask_restx-0.5.1.dist-info/RECORD:flask_restx/static/favicon-32x32.png,sha256=PtYS9B4FDKXnAAytbxy-fn2jn2X8qZwC6Z5lkQVuWDc,628
+/data/internetOfThings/lib/python3.10/site-packages/pip/_vendor/rich/logging.py:    log.warning("GET /favicon.ico 404 242")
+/data/internetOfThings/lib/python3.10/site-packages/werkzeug/debug/tbtools.py:    <!-- We need to make sure this has a favicon so that the debugger does
+/data/internetOfThings/lib/python3.10/site-packages/werkzeug/debug/tbtools.py:         not accidentally trigger a request to /favicon.ico which might
+/data/internetOfThings/apps/templates/layouts/base.html:  <link rel="icon" type="image/png" href="{{ config.ASSETS_ROOT }}/img/favicon.png">
+/data/internetOfThings/apps/templates/layouts/base-rtl.html:  <link rel="icon" type="image/png" href="{{ config.ASSETS_ROOT }}/img/favicon.png">
+/data/internetOfThings/apps/templates/layouts/base-fullscreen.html:  <link rel="icon" type="image/png" href="{{ config.ASSETS_ROOT }}/img/favicon.png">
+/data/internetOfThings/apps/templates/home/virtual-reality.html:  <link rel="icon" type="image/png" href="{{ config.ASSETS_ROOT }}/img/favicon.png">

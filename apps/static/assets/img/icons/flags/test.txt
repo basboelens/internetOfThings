@@ -1,0 +1,5 @@
+/data/internetOfThings/apps/templates/home/rtl.html:                <canvas id="chart-line" class="chart-canvas" height="300px"></canvas>
+/data/internetOfThings/apps/templates/home/rtl.html:    var ctx1 = document.getElementById("chart-line").getContext("2d");
+/data/internetOfThings/apps/templates/home/index.html:                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+/data/internetOfThings/apps/templates/home/index.html:                <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
+/data/internetOfThings/apps/templates/home/index.html:    var ctx1 = document.getElementById("chart-line").getContext("2d");

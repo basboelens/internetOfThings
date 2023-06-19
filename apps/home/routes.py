@@ -5,15 +5,18 @@ Copyright (c) 2019 - present AppSeed.us
 
 from apps.home import blueprint
 from flask import render_template, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from jinja2 import TemplateNotFound
+from apps.iot.models import Verbruik
 
 
-@blueprint.route('/index')
+@blueprint.route('/index', methods=["GET", "POST"])
 @login_required
 def index():
+    info = Verbruik.query.filter_by(user=current_user.username).all()
+        
+    return render_template('home/index.html', segment='index', info=info)
 
-    return render_template('home/index.html', segment='index')
 
 
 @blueprint.route('/<template>')

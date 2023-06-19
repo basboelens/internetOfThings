@@ -34,6 +34,7 @@ class Users(db.Model, UserMixin):
 
     def __repr__(self):
         return str(self.username)
+        
 
 
 @login_manager.user_loader

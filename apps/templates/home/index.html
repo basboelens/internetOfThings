@@ -118,7 +118,7 @@
           </div>
         </div>
       </div>
-
+      <!-- HIER ZIJN DE GRAFIEKEN EN ONDERIN ZIN DE SETTINGS -->
       <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card z-index-2 h-100">
@@ -129,13 +129,22 @@
                 <span class="font-weight-bold">4% Meer</span> in dec
               </p>
             </div>
-            <div class="card-body p-3">
+            
+            <div class="card-body p-3" >
               <div class="chart">
                 <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
               </div>
+              <div class="chart">
+                <canvas id="chart-line2" class="chart-canvas" height="300" title="Chart 2"></canvas>
+              </div>
+              
+             
             </div>
+           
           </div>
+          
         </div>
+         <!-- EINDE GRAFIEKEN -->
         <div class="col-lg-5">
           <div class="card card-carousel overflow-hidden h-100 p-0">
             <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
@@ -183,7 +192,8 @@
           </div>
         </div>
       </div>
-
+  
+              
       <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card ">
@@ -199,24 +209,25 @@
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div>
-                          <img src="{{ config.ASSETS_ROOT }}/img/icons/flags/US.png" alt="Country flag">
+                          <span class="emoji">🇳🇱</span>
                         </div>
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">Land:</p>
-                          <h6 class="text-sm mb-0">United States</h6>
+                          <h6 class="text-sm mb-0">Groningen</h6>
+                      
                         </div>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Gemiddelde verbuik:</p>
-                        <h6 class="text-sm mb-0">8000 Kwh</h6>
+                        <h6 class="text-sm mb-0">1900 Kwh</h6>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">In €:</p>
-                        <h6 class="text-sm mb-0">€11.300</h6>
+                        <h6 class="text-sm mb-0">€361</h6>
                       </div>
                     </td>
                     <td class="align-middle text-sm">
@@ -230,24 +241,24 @@
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div>
-                          <img src="{{ config.ASSETS_ROOT }}/img/icons/flags/DE.png" alt="Country flag">
+                          <span class="emoji">🇳🇱</span>
                         </div>
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">Land:</p>
-                          <h6 class="text-sm mb-0">Germany</h6>
+                          <h6 class="text-sm mb-0">Amsterdam</h6>
                         </div>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Gemiddelde verbuik:</p>
-                        <h6 class="text-sm mb-0">3900 Kwh</h6>
+                        <h6 class="text-sm mb-0">2130 Kwh</h6>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">In €:</p>
-                        <h6 class="text-sm mb-0">€3.900</h6>
+                        <h6 class="text-sm mb-0">€426</h6>
                       </div>
                     </td>
                     <td class="align-middle text-sm">
@@ -261,24 +272,24 @@
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div>
-                          <img src="{{ config.ASSETS_ROOT }}/img/icons/flags/GB.png" alt="Country flag">
+                          <span class="emoji">🇳🇱</span>
                         </div>
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">Land:</p>
-                          <h6 class="text-sm mb-0">Great Britain</h6>
+                          <h6 class="text-sm mb-0">Zevenaar</h6>
                         </div>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Gemiddelde verbuik:</p>
-                        <h6 class="text-sm mb-0">2400 Kwh</h6>
+                        <h6 class="text-sm mb-0">3000 Kwh</h6>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">€4.000</h6>
+                        <h6 class="text-sm mb-0">€750</h6>
                       </div>
                     </td>
                     <td class="align-middle text-sm">
@@ -292,24 +303,24 @@
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div>
-                          <img src="{{ config.ASSETS_ROOT }}/img/icons/flags/BR.png" alt="Country flag">
+                          <span class="emoji">🇳🇱</span>
                         </div>
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">Land:</p>
-                          <h6 class="text-sm mb-0">Brasil</h6>
+                          <h6 class="text-sm mb-0">Limburg</h6>
                         </div>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Gemiddelde verbuik:</p>
-                        <h6 class="text-sm mb-0">5620 Kwh</h6>
+                        <h6 class="text-sm mb-0">2100 Kwh</h6>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">€4.560</h6>
+                        <h6 class="text-sm mb-0">€399</h6>
                       </div>
                     </td>
                     <td class="align-middle text-sm">
@@ -488,5 +499,91 @@
       },
     });
   </script>
+
+<script src="{{ config.ASSETS_ROOT }}/js/plugins/chartjs.min.js"></script>
+<script>
+  var ctx1 = document.getElementById("chart-line2").getContext("2d");
+
+  var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+  gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+  gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+  gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+  new Chart(ctx1, {
+    type: "line",
+    data: {
+      labels: ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"],
+      datasets: [{
+        label: "In Kwh",
+        tension: 0.4,
+        borderWidth: 0,
+        pointRadius: 0,
+        borderColor: "#fcbf00",
+        backgroundColor: gradientStroke1,
+        borderWidth: 3,
+        fill: true,
+        data: [511, 120, 311, 689, 720,700, 130],
+        maxBarThickness: 6
+
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        }
+      },
+      interaction: {
+        intersect: false,
+        mode: 'index',
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [5, 5]
+          },
+          ticks: {
+            display: true,
+            padding: 10,
+            color: '#fbfbfb',
+            font: {
+              size: 11,
+              family: "Open Sans",
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+            borderDash: [5, 5]
+          },
+          ticks: {
+            display: true,
+            color: '#ccc',
+            padding: 20,
+            font: {
+              size: 11,
+              family: "Open Sans",
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+      },
+    },
+  });
+</script>
+
 
 {% endblock javascripts %}
