@@ -118,7 +118,20 @@
           </div>
         </div>
       </div>
-      <!-- HIER ZIJN DE GRAFIEKEN EN ONDERIN ZIN DE SETTINGS -->
+
+      <h1>hier </h1>
+      {{dates}}
+     {% for row in data %}
+     {{row[1]}}
+     {{row[2]}}
+     {% endfor %}
+     <h1>test1:</h1>
+     <span id="info"></span>
+     <h1>test2</h1>
+     <span id="dagen"></span>
+ 
+      
+      
       <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card z-index-2 h-100">
@@ -126,24 +139,26 @@
               <h6 class="text-capitalize">Verbuik in Kwh</h6>
               <p class="text-sm mb-0">
                 <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% Meer</span> in dec
+                <span class="font-weight-bold">5% Meer</span> in dec
               </p>
             </div>
+            <!-- HIER ZIJN DE GRAFIEKEN EN ONDERIN ZIN DE SETTINGS -->
+      
             
             <div class="card-body p-3" >
               <div class="chart">
                 <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
               </div>
-              <div class="chart">
+              <!-- <div class="chart">
                 <canvas id="chart-line2" class="chart-canvas" height="300" title="Chart 2"></canvas>
-              </div>
-              
+              </div> -->
              
             </div>
            
           </div>
           
         </div>
+
          <!-- EINDE GRAFIEKEN -->
         <div class="col-lg-5">
           <div class="card card-carousel overflow-hidden h-100 p-0">
@@ -417,6 +432,12 @@
   
   <script src="{{ config.ASSETS_ROOT }}/js/plugins/chartjs.min.js"></script>
   <script>
+    
+
+    let verbruik = JSON.parse({{data | tojson }})
+    let dagen = JSON.parse({{days | tojson}})
+    document.getElementById("info").innerHTML = verbruik;
+    document.getElementById("dagen").innerHTML = dagen;
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
@@ -427,7 +448,7 @@
     new Chart(ctx1, {
       type: "line",
       data: {
-        labels: ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"],
+        labels: dagen,
         datasets: [{
           label: "In Kwh",
           tension: 0.4,
@@ -437,7 +458,7 @@
           backgroundColor: gradientStroke1,
           borderWidth: 3,
           fill: true,
-          data: [209, 296, 211, 389],
+          data: verbruik,
           maxBarThickness: 6
 
         }],
@@ -503,8 +524,15 @@
 <script src="{{ config.ASSETS_ROOT }}/js/plugins/chartjs.min.js"></script>
 <script>
   var ctx1 = document.getElementById("chart-line2").getContext("2d");
+  
 
   var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+  var data_info = '{% for row in data %} {{row[1]}} {%  endfor%}'
+  var extra = []
+  extra = '{% for row in data %} {{row[1]}} {%  endfor %}'
+
+  document.getElementById("data").innerHTML = data_info;
+  document.getElementById("extra").innerHTML = extra;
 
   gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
   gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');

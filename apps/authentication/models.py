@@ -35,7 +35,8 @@ class Users(db.Model, UserMixin):
     def __repr__(self):
         return str(self.username)
         
-
+class Verbruik(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
 
 @login_manager.user_loader
 def user_loader(id):
