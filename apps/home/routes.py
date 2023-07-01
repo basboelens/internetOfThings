@@ -60,8 +60,8 @@ def route_template(template):
 def data():
     data = request.json
     if data:
-        with open('data.txt', 'w') as f:
-            f.write(str(data))
+        with open('data.txt', 'a') as f:
+            f.write('\n' + str(data))
     return render_template('home/data.html', data=data)
 
 # Helper - Extract current page name from request
