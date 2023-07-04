@@ -1,0 +1,188 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+<!-- END Specific CSS goes HERE -->
+
+
+{% block content %}
+
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    
+  {% include "includes/sidenav.html" %}
+
+
+  <!-- Hier onder zit de main content-->
+<main class="main-content position-relative border-radius-lg ">
+    {% include "includes/navigation.html" %}
+    
+<div class="container-fluid py-4">
+
+
+    <div class="card">
+        <div class="card-header pb-0 pt-3 bg-transparent">
+                <h6 class="text-capitalize">Verbuik in Kwh</h6>
+            <p class="text-sm mb-0">
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="font-weight-bold">5% Meer</span> in dec
+            </p>
+        </div>
+
+        <div class="card-body">
+            <div class="chart">
+              <!-- Chart wrapper -->
+                <canvas id="myChart" class="chart-canvas" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- CHART 2 -->
+    <div class="card">
+        <div class="card-header pb-0 pt-3 bg-transparent">
+                <h6 class="text-capitalize">Huidige verbruik in KwH</h6>
+            
+        </div>
+            <div class="card-body">
+            <div class="chart">
+                <div id='myDiv'></div>
+                </div>
+                </div>
+    </div>
+
+    <!-- END CHART 2-->
+
+
+
+
+
+
+
+</div>
+<!-- Einde main content-->
+
+</div>
+</main>
+
+{% endblock content %}
+
+
+<!-- Javascripts settings voor chart hieronder -->
+{% block javascripts %}
+<script src="{{ config.ASSETS_ROOT }}/js/plugins/chartjs.min.js"></script>
+
+<!-- CHART 1 -->
+<script>
+  const xValues = ["maandag", "dinsdag", "woensdag", "donderdag"];
+  const yValues = [7,2,9,4];
+  
+  new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [{
+        label: "In Kwh",
+        tension: 0.4,
+        borderWidth: 0,
+        pointRadius: 0,
+        borderColor: "#fcbf00",
+        backgroundColor: 'rgba(94, 114, 228, 0.2)',
+        borderWidth: 3,
+        fill: true,
+        data: yValues,
+        maxBarThickness: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {display: false},
+      scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#fbfbfb',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#ccc',
+              padding: 20,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      interaction: {
+          intersect: false,
+          mode: 'index',
+        }
+    }
+  });
+  </script>
+<!-- EIND CHART 1 -->
+
+
+<!-- BEGIN CHART 2 -->
+<script src='https://cdn.plot.ly/plotly-2.24.1.min.js'></script>
+<script>
+var data = [
+  {
+    domain: { x: [0, 1], y: [0, 1] },
+    value: 200,
+    title: { text: "In KwH" },
+    type: "indicator",
+    mode: "gauge+number+delta",
+    delta: { reference: 210, },
+    gauge: {
+      axis: { range: [null, 500] },
+      bar: { color: "#ffbc04"}, 
+      borderwidth: 2,
+      steps: [
+        { range: [0, 150], color: "green" },
+        {range: [150, 350], color: "#F8740E" },
+        { range: [350, 500], color: "red" }
+      ],
+      threshold: {
+        line: { color: "#ffbc04", width: 4 },
+        thickness: 0.75,
+        value: 200
+      }
+    }
+  }
+];
+
+var layout = { width: 900, height: 360, margin: { t: 0, b: 0 } };
+Plotly.newPlot('myDiv', data, layout);
+
+</script>
+<!-- EINDE CHART 2-->
+{% endblock javascripts %}

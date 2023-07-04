@@ -1,8 +1,5 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
 
+from datetime import datetime
 from apps.home import blueprint
 from apps import db 
 from flask import render_template, request, jsonify
@@ -60,8 +57,8 @@ def route_template(template):
 def data():
     data = request.json
     if data:
-        with open('data.txt', 'w') as f:
-            f.write(str(data))
+        with open('data.txt', 'a') as f:
+            f.write('\n' + str(data))
     return render_template('home/data.html', data=data)
 
 # Helper - Extract current page name from request
@@ -78,3 +75,4 @@ def get_segment(request):
 
     except:
         return None
+    
