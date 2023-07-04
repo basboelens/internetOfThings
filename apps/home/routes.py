@@ -6,6 +6,8 @@ from flask import render_template, request, jsonify
 from flask_login import login_required, current_user
 from jinja2 import TemplateNotFound
 from apps.iot.models import Verbruik
+from datetime import datetime
+from apps.dataprocessing.read_data import extract_data
 import json
 
 
@@ -53,12 +55,15 @@ def route_template(template):
     except:
         return render_template('home/page-500.html'), 500
 
+
 @blueprint.route('/data', methods=["GET", "POST"])
 def data():
     data = request.json
     if data:
         with open('data.txt', 'a') as f:
             f.write('\n' + str(data))
+
+    insert_data()
     return render_template('home/data.html', data=data)
 
 # Helper - Extract current page name from request
@@ -75,4 +80,16 @@ def get_segment(request):
 
     except:
         return None
-    
+
+# Insert values from data.txt into the database
+def insert_data():
+    # Using extract_data() from \apps\dataprocessing\read_data.py to extract the values from data.txt
+    values = extract_data()
+    print("Inserting values into the database...")
+    # Inserts values into the database
+    for value in values:
+        verbruik_obj = Verbruik(verbruik=value, user="user", date=datetime.now())
+        db.session.add(verbruik_obj)
+        db.session.commit()
+
+    print(f"Values inserted into verbruik table: {len(values)}")

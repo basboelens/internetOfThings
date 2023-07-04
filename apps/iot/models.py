@@ -6,7 +6,7 @@ class Verbruik(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     verbruik = db.Column(db.REAL)
-    user = db.Column(db.Text, db.ForeignKey("User.username"))
+    user = db.Column(db.Text, db.ForeignKey("Users.username"))
     date = db.Column(db.DateTime)
 
     def __init__(self, verbruik, user, date):
