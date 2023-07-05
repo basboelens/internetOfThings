@@ -19,6 +19,14 @@
 <main class="main-content position-relative border-radius-lg ">
     {% include "includes/navigation.html" %}
     
+
+    <h1>TEST hieronder</h1>
+
+     <h1> test 2:</h1>
+      <span id="dagen"></span>
+      <span id="verbruik"></span>
+
+      
 <div class="container-fluid py-4">
 
 
@@ -75,13 +83,17 @@
 
 <!-- CHART 1 -->
 <script>
-  const xValues = ["maandag", "dinsdag", "woensdag", "donderdag"];
-  const yValues = [7,2,9,4];
+  let verbruik = JSON.parse({{data | tojson }})
+  let dagen = JSON.parse({{days | tojson}})
+    document.getElementById("verbruik").innerHTML = verbruik;
+    document.getElementById("dagen").innerHTML = dagen;
+  const xValues = [dagen];
+  const yValues = [verbruik];
   
   new Chart("myChart", {
     type: "line",
     data: {
-      labels: xValues,
+      labels: dagen,
       datasets: [{
         label: "In Kwh",
         tension: 0.4,
@@ -91,7 +103,7 @@
         backgroundColor: 'rgba(94, 114, 228, 0.2)',
         borderWidth: 3,
         fill: true,
-        data: yValues,
+        data: verbruik,
         maxBarThickness: 6
       }]
     },

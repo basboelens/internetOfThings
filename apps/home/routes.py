@@ -6,10 +6,13 @@ from flask import render_template, request, jsonify
 from flask_login import login_required, current_user
 from jinja2 import TemplateNotFound
 from apps.iot.models import Verbruik
-from datetime import datetime
+from datetime import datetime, date
 from apps.dataprocessing.read_data import extract_data
 import json
 
+today = date.today()
+
+print(today)
 
 @blueprint.route('/index', methods=["GET", "POST"])
 @login_required
@@ -23,16 +26,32 @@ def index():
         id = i.id
         verbruik = i.verbruik
         user = i.user
-        date = i.date.strftime('%A')
+        date = i.date.strftime('%d/%m/%y')
         data.append(verbruik)
         days.append(date)
 
     data = json.dumps(data)
     days = json.dumps(days)
-        
+
     return render_template('home/index.html', segment='index', data=data, days=days, dates=dates)
 
+@blueprint.route('/charts', methods=["GET", "POST"])
+def charts():
+    info = db.session.query(Verbruik).filter(db.func.date(Verbruik.date) == today).all()
+    data = []
+    days = []
+    for i in info:
+        id = i.id
+        verbruik = i.verbruik
+        user = i.user
+        date = i.date.strftime('%H:%M')
+        data.append(verbruik)
+        days.append(date)
 
+    data = json.dumps(data)
+    days = json.dumps(days)
+
+    return render_template('home/charts.html', segment='index', data=data, days=days)
 
 @blueprint.route('/<template>')
 @login_required
@@ -85,6 +104,7 @@ def get_segment(request):
 def insert_data():
     # Using extract_data() from \apps\dataprocessing\read_data.py to extract the values from data.txt
     values = extract_data()
+    print(values)
     print("Inserting values into the database...")
     # Inserts values into the database
     for value in values:
