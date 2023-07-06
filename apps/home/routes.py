@@ -20,6 +20,7 @@ def index():
     info = Verbruik.query.filter_by(user="user").all()
     data = []
     days = []
+    hourly_averages = {}
     dates = db.session.query(Verbruik.date).all()
     dates = [date.strftime('%A') for (date,) in dates] 
     for i in info:
@@ -30,11 +31,35 @@ def index():
         days.append(date)
         dates.append(dagen)
 
+        hour = i.date.strftime('%H')
+        hours = hour + ":00"
+        if hours in hourly_averages:
+            hourly_averages[hours].append(verbruik)
+        else:
+            hourly_averages[hours] = [verbruik]
+
+    hourly_labels = []
+    hourly_data = []
+    for hours, verbruik_list in hourly_averages.items():
+        average_verbruik = sum(verbruik_list) / len(verbruik_list)
+
+        # only show 24 most recent hours
+        if len(hourly_labels) and len(hourly_averages) > 23:
+            hourly_labels.pop(0)
+            hourly_data.pop(0)
+            hourly_labels.append(hours)
+            hourly_data.append(average_verbruik)
+        else:
+            hourly_labels.append(hours)
+            hourly_data.append(average_verbruik)
+
     data = json.dumps(data)
     days = json.dumps(days)
     dates = json.dumps(dates)
+    hourly_data = json.dumps(hourly_data)
+    hourly_labels = json.dumps(hourly_labels)
 
-    return render_template('home/index.html', segment='index', data=data, days=days, dates=dates)
+    return render_template('home/index.html', segment='index', data=data, days=days, dates=dates, hourly_data=hourly_data, hourly_labels=hourly_labels)
 
 
 @blueprint.route('/charts', methods=["GET", "POST"])
