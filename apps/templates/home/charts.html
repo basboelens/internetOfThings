@@ -175,30 +175,6 @@
 
 <!-- BEGIN CHART 2 -->
 <script>
-<<<<<<< HEAD
-
-var data = [
-  {
-    domain: { x: [0, 1], y: [0, 1] },
-    value: 200,
-    title: { text: "In KwH" },
-    type: "indicator",
-    mode: "gauge+number+delta",
-    delta: { reference: 210, },
-    gauge: {
-      axis: { range: [null, 500] },
-      bar: { color: "#ffbc04"}, 
-      borderwidth: 2,
-      steps: [
-        { range: [0, 150], color: "green" },
-        {range: [150, 350], color: "#F8740E" },
-        { range: [350, 500], color: "red" }
-      ],
-      threshold: {
-        line: { color: "#ffbc04", width: 4 },
-        thickness: 0.75,
-        value: 200
-=======
   const hourlyData = JSON.parse({{hourly_data | tojson}});
   const hourlyLabels = JSON.parse({{hourly_labels | tojson}});
 
@@ -263,7 +239,6 @@ new Chart("averageChart", {
             lineHeight: 2
           }
         }
->>>>>>> 727f2fe09495e94c3fe0231c3978bca424924c8f
       }
     },
     interaction: {
