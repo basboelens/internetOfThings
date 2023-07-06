@@ -18,16 +18,7 @@
   <!-- Hier onder zit de main content-->
 <main class="main-content position-relative border-radius-lg ">
     {% include "includes/navigation.html" %}
-    
-
-    <h1>TEST hieronder</h1>
-
-     <h1> test 2:</h1>
-      <span id="dagen"></span>
-      <span id="verbruik"></span>
-      <h3>hieronder</h3>
-      <span id="verbruik1"></span>
-
+  
 
       
 <div class="container-fluid py-4">
@@ -177,7 +168,7 @@
 <script>
   const hourlyData = JSON.parse({{hourly_data | tojson}});
   const hourlyLabels = JSON.parse({{hourly_labels | tojson}});
-
+  
 new Chart("averageChart", {
   type: "line",
   data: {

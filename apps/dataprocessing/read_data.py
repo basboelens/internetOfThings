@@ -38,5 +38,5 @@ def extract_data():
                         print("hieronder")
                         print(info)
                         print(data)
-                        time.sleep(1)
+                        time.sleep(2)
     file.close()
