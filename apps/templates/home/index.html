@@ -121,16 +121,12 @@
         </div>
       </div>
 
-      <h1>hier </h1>
-      {{dates}}
-     {% for row in data %}
-     {{row[1]}}
-     {{row[2]}}
-     {% endfor %}
      <h1>test1:</h1>
      <span id="info"></span>
      <h1>test2</h1>
      <span id="dagen"></span>
+     <h3>test3:</h3>
+     <span id="dates"></span>
  
 
      <div class="card">
@@ -448,8 +444,10 @@
 
     let verbruik = JSON.parse({{data | tojson }})
     let dagen = JSON.parse({{days | tojson}})
+
     document.getElementById("info").innerHTML = verbruik;
     document.getElementById("dagen").innerHTML = dagen;
+
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
@@ -533,8 +531,8 @@
     });
   </script>
 <script>
-  const xValues = ["maandag", "dinsdag", "woensdag", "donderdag"];
-  const yValues = [7,2,9,4];
+  const xValues = dagen;
+  const yValues = verbruik;
   
   new Chart("myChart", {
     type: "line",

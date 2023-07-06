@@ -17,21 +17,22 @@ print(today)
 @blueprint.route('/index', methods=["GET", "POST"])
 @login_required
 def index():
-    info = Verbruik.query.filter_by(user=current_user.username).all()
+    info = Verbruik.query.filter_by(user="user").all()
     data = []
     days = []
     dates = db.session.query(Verbruik.date).all()
     dates = [date.strftime('%A') for (date,) in dates] 
     for i in info:
-        id = i.id
         verbruik = i.verbruik
-        user = i.user
         date = i.date.strftime('%d/%m/%y')
+        dagen = i.date.strftime('%A')
         data.append(verbruik)
         days.append(date)
+        dates.append(dagen)
 
     data = json.dumps(data)
     days = json.dumps(days)
+    dates = json.dumps(dates)
 
     return render_template('home/index.html', segment='index', data=data, days=days, dates=dates)
 
@@ -40,6 +41,7 @@ def charts():
     info = db.session.query(Verbruik).filter(db.func.date(Verbruik.date) == today).all()
     data = []
     days = []
+    hourly_averages = {}
     for i in info:
         id = i.id
         verbruik = i.verbruik
@@ -48,10 +50,25 @@ def charts():
         data.append(verbruik)
         days.append(date)
 
+        hour = i.date.hour
+        if hour in hourly_averages:
+            hourly_averages[hour].append(verbruik)
+        else:
+            hourly_averages[hour] = [verbruik]
+
+    hourly_labels = []
+    hourly_data = []
+    for hour, verbruik_list in hourly_averages.items():
+        average_verbruik = sum(verbruik_list) / len(verbruik_list)
+        hourly_labels.append(str(hour) + ":00")
+        hourly_data.append(average_verbruik)
+
     data = json.dumps(data)
     days = json.dumps(days)
+    hourly_data = json.dumps(hourly_data)
+    hourly_labels = json.dumps(hourly_labels)
 
-    return render_template('home/charts.html', segment='index', data=data, days=days)
+    return render_template('home/charts.html', segment='index', data=data, days=days, hourly_data=hourly_data, hourly_labels=hourly_labels)
 
 @blueprint.route('/<template>')
 @login_required

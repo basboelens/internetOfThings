@@ -13,7 +13,7 @@ def extract_data():
 
     # Read data from data.txt
     with open(file_path, "r") as file:
-        lines = file.readlines()[100:]
+        lines = file.readlines()[-100:]
         for line in lines:
             line = line.split()
             for data in line:
@@ -24,7 +24,6 @@ def extract_data():
                         print(sum(info))
                         print(len(info))
                         average = [sum(info) / len(info)]
-                        data = []
                         timer = 0
                         print("avg hieronder")
                         print(average)

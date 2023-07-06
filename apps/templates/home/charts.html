@@ -25,6 +25,9 @@
      <h1> test 2:</h1>
       <span id="dagen"></span>
       <span id="verbruik"></span>
+      <h3>hieronder</h3>
+      <span id="verbruik1"></span>
+
 
       
 <div class="container-fluid py-4">
@@ -85,8 +88,11 @@
 <script>
   let verbruik = JSON.parse({{data | tojson }})
   let dagen = JSON.parse({{days | tojson}})
+  let info = verbruik[verbruik.length - 1]; 
+
     document.getElementById("verbruik").innerHTML = verbruik;
     document.getElementById("dagen").innerHTML = dagen;
+    document.getElementById("verbruik1").innerHTML = info;
   const xValues = [dagen];
   const yValues = [verbruik];
   
@@ -166,6 +172,7 @@
 <!-- BEGIN CHART 2 -->
 <script src='https://cdn.plot.ly/plotly-2.24.1.min.js'></script>
 <script>
+
 var data = [
   {
     domain: { x: [0, 1], y: [0, 1] },
