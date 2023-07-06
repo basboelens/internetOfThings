@@ -35,11 +35,13 @@ def index():
 
     return render_template('home/index.html', segment='index', data=data, days=days, dates=dates)
 
+
 @blueprint.route('/charts', methods=["GET", "POST"])
 def charts():
     info = db.session.query(Verbruik).filter(db.func.date(Verbruik.date) == today).all()
     data = []
     days = []
+    hourly_averages = {}
     for i in info:
         id = i.id
         verbruik = i.verbruik
@@ -48,10 +50,27 @@ def charts():
         data.append(verbruik)
         days.append(date)
 
+        hour = i.date.hour
+        if hour in hourly_averages:
+            hourly_averages[hour].append(verbruik)
+        else:
+            hourly_averages[hour] = [verbruik]
+
+    hourly_labels = []
+    hourly_data = []
+    for hour, verbruik_list in hourly_averages.items():
+        average_verbruik = sum(verbruik_list) / len(verbruik_list)
+        hourly_labels.append(str(hour) + ":00")
+        hourly_data.append(average_verbruik)
+
     data = json.dumps(data)
     days = json.dumps(days)
+    hourly_data = json.dumps(hourly_data)
+    hourly_labels = json.dumps(hourly_labels)
 
-    return render_template('home/charts.html', segment='index', data=data, days=days)
+    print(average_verbruik)
+    return render_template('home/charts.html', segment='index', data=data, days=days, hourly_data=hourly_data, hourly_labels=hourly_labels)
+
 
 @blueprint.route('/<template>')
 @login_required
