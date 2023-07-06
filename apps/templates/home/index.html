@@ -28,7 +28,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Kwh vandaag verbuikt</p>
                     <h5 class="font-weight-bolder">
-                      159 Kwh
+                      <span id="avg"></span>
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">-15%</span>
@@ -127,6 +127,8 @@
      <span id="dagen"></span>
      <h3>test3:</h3>
      <span id="dates"></span>
+     <h3>test4:</h3>
+     
  
 
      <div class="card">
@@ -444,9 +446,18 @@
 
     let verbruik = JSON.parse({{data | tojson }})
     let dagen = JSON.parse({{days | tojson}})
+    let info = verbruik[verbruik.length - 1]; 
+    var sum = verbruik.reduce(function(a, b){
+      return a + b;
+    }, 0);
+    var opsomming = sum / verbruik.length;
+    let average = opsomming.toFixed(1);
+
 
     document.getElementById("info").innerHTML = verbruik;
     document.getElementById("dagen").innerHTML = dagen;
+    document.getElementById("avg").innerHTML = average;
+    document.getElementById("verbruik1").innerHTML = info;
 
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
