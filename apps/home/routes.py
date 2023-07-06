@@ -36,6 +36,7 @@ def index():
 
     return render_template('home/index.html', segment='index', data=data, days=days, dates=dates)
 
+
 @blueprint.route('/charts', methods=["GET", "POST"])
 def charts():
     info = db.session.query(Verbruik).filter(db.func.date(Verbruik.date) == today).all()

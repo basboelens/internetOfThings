@@ -52,17 +52,21 @@
     <br>
     <!-- CHART 2 -->
     <div class="card">
-        <div class="card-header pb-0 pt-3 bg-transparent">
-                <h6 class="text-capitalize">Huidige verbruik in KwH</h6>
-            
-        </div>
-            <div class="card-body">
-            <div class="chart">
-                <div id='myDiv'></div>
-                </div>
-                </div>
-    </div>
+      <div class="card-header pb-0 pt-3 bg-transparent">
+              <h6 class="text-capitalize">Verbuik in Kwh</h6>
+          <p class="text-sm mb-0">
+              <i class="fa fa-arrow-up text-success"></i>
+              <span class="font-weight-bold">5% Meer</span> in dec
+          </p>
+      </div>
 
+      <div class="card-body">
+          <div class="chart">
+            <!-- Chart wrapper -->
+              <canvas id="averageChart" class="chart-canvas" height="300"></canvas>
+          </div>
+      </div>
+  </div>
     <!-- END CHART 2-->
 
 
@@ -165,13 +169,13 @@
         }
     }
   });
-  </script>
+</script>
 <!-- EIND CHART 1 -->
 
 
 <!-- BEGIN CHART 2 -->
-<script src='https://cdn.plot.ly/plotly-2.24.1.min.js'></script>
 <script>
+<<<<<<< HEAD
 
 var data = [
   {
@@ -194,14 +198,81 @@ var data = [
         line: { color: "#ffbc04", width: 4 },
         thickness: 0.75,
         value: 200
+=======
+  const hourlyData = JSON.parse({{hourly_data | tojson}});
+  const hourlyLabels = JSON.parse({{hourly_labels | tojson}});
+
+new Chart("averageChart", {
+  type: "line",
+  data: {
+    labels: hourlyLabels,
+    datasets: [{
+      label: "Average Verbruik",
+      tension: 0.4,
+      borderWidth: 0,
+      pointRadius: 0,
+      borderColor: "#fcbf00",
+      backgroundColor: 'rgba(94, 114, 228, 0.2)',
+      borderWidth: 3,
+      fill: true,
+      data: hourlyData,
+      maxBarThickness: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: { display: false },
+    scales: {
+      y: {
+        grid: {
+          drawBorder: false,
+          display: true,
+          drawOnChartArea: true,
+          drawTicks: false,
+          borderDash: [5, 5]
+        },
+        ticks: {
+          display: true,
+          padding: 10,
+          color: '#fbfbfb',
+          font: {
+            size: 11,
+            family: "Open Sans",
+            style: 'normal',
+            lineHeight: 2
+          }
+        }
+      },
+      x: {
+        grid: {
+          drawBorder: false,
+          display: false,
+          drawOnChartArea: false,
+          drawTicks: false,
+          borderDash: [5, 5]
+        },
+        ticks: {
+          display: true,
+          color: '#ccc',
+          padding: 20,
+          font: {
+            size: 11,
+            family: "Open Sans",
+            style: 'normal',
+            lineHeight: 2
+          }
+        }
+>>>>>>> 727f2fe09495e94c3fe0231c3978bca424924c8f
       }
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index'
     }
   }
-];
-
-var layout = { width: 900, height: 360, margin: { t: 0, b: 0 } };
-Plotly.newPlot('myDiv', data, layout);
-
+});
 </script>
 <!-- EINDE CHART 2-->
+
 {% endblock javascripts %}
