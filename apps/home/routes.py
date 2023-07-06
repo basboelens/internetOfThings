@@ -42,14 +42,26 @@ def charts():
     info = db.session.query(Verbruik).filter(db.func.date(Verbruik.date) == today).all()
     data = []
     days = []
+    test = [1]
     hourly_averages = {}
     for i in info:
         id = i.id
         verbruik = i.verbruik
         user = i.user
         date = i.date.strftime('%H:%M')
-        data.append(verbruik)
-        days.append(date)
+
+        # only show 10 most recent values
+        # remove first item from the list before adding a new one
+        if len(data) > 9:
+            data.pop(0)
+            days.pop(0)
+            data.append(verbruik)
+            days.append(date)
+        else:
+            data.append(verbruik)
+            days.append(date)
+        
+        print(len(data))
 
         hour = i.date.hour
         if hour in hourly_averages:
@@ -61,8 +73,16 @@ def charts():
     hourly_data = []
     for hour, verbruik_list in hourly_averages.items():
         average_verbruik = sum(verbruik_list) / len(verbruik_list)
-        hourly_labels.append(str(hour) + ":00")
-        hourly_data.append(average_verbruik)
+
+        # only show 24 most recent hours
+        if len(hourly_labels) and len(hourly_averages) > 23:
+            hourly_labels.pop(0)
+            hourly_data.pop(0)
+            hourly_labels.append(str(hour) + ":00")
+            hourly_data.append(average_verbruik)
+        else:
+            hourly_labels.append(str(hour) + ":00")
+            hourly_data.append(average_verbruik)
 
     data = json.dumps(data)
     days = json.dumps(days)
