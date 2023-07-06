@@ -26,7 +26,7 @@
 
     <div class="card">
         <div class="card-header pb-0 pt-3 bg-transparent">
-                <h6 class="text-capitalize">Verbuik in Kwh</h6>
+                <h6 class="text-capitalize">Verbuik in Watt</h6>
             <p class="text-sm mb-0">
                 <i class="fa fa-arrow-up text-success"></i>
                 <span class="font-weight-bold">5% Meer</span> in dec
@@ -44,7 +44,7 @@
     <!-- CHART 2 -->
     <div class="card">
       <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize">Verbuik in Kwh</h6>
+              <h6 class="text-capitalize">Verbuik in Watt</h6>
           <p class="text-sm mb-0">
               <i class="fa fa-arrow-up text-success"></i>
               <span class="font-weight-bold">5% Meer</span> in dec
@@ -85,9 +85,6 @@
   let dagen = JSON.parse({{days | tojson}})
   let info = verbruik[verbruik.length - 1]; 
 
-    document.getElementById("verbruik").innerHTML = verbruik;
-    document.getElementById("dagen").innerHTML = dagen;
-    document.getElementById("verbruik1").innerHTML = info;
   const xValues = [dagen];
   const yValues = [verbruik];
   
@@ -166,9 +163,6 @@
 
 <!-- BEGIN CHART 2 -->
 <script>
-  const hourlyData = JSON.parse({{hourly_data | tojson}});
-  const hourlyLabels = JSON.parse({{hourly_labels | tojson}});
-  
 new Chart("averageChart", {
   type: "line",
   data: {

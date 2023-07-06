@@ -19,7 +19,7 @@ def extract_data():
             for data in line:
                 # Get the correct data values
                 if data.startswith('"1-0:1.7.0'):
-                    if timer >= 10:
+                    if timer >= 60:
                         print("na timer 60------------")
                         print(sum(info))
                         print(len(info))
@@ -38,5 +38,5 @@ def extract_data():
                         print("hieronder")
                         print(info)
                         print(data)
-                        time.sleep(2)
+                        time.sleep(1)
     file.close()
