@@ -51,7 +51,7 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Verbuik vergeleken andere</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Vergeleken gemiddelde</p>
                     <h5 class="font-weight-bolder">
                       3% minder
                     </h5>
@@ -121,14 +121,14 @@
         </div>
       </div>
 
-     <h1>test1:</h1>
+     <!-- <h1>test1:</h1>
      <span id="info"></span>
      <h1>test2</h1>
      <span id="dagen"></span>
      <h3>test3:</h3>
      <span id="dates"></span>
      <h3>test4:</h3>
-     
+      -->
  
 
      <div class="card">
@@ -453,10 +453,9 @@
     var opsomming = sum / verbruik.length;
     let average = opsomming.toFixed(1);
 
-
+    document.getElementById("avg").innerHTML = average;
     document.getElementById("info").innerHTML = verbruik;
     document.getElementById("dagen").innerHTML = dagen;
-    document.getElementById("avg").innerHTML = average;
     document.getElementById("verbruik1").innerHTML = info;
 
     var ctx1 = document.getElementById("chart-line").getContext("2d");
